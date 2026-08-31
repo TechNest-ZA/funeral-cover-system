@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/join", "destination": "https://funeral-cover-system-q4unnueki-reginalthembaubisis-projects.vercel.app/join" },
+    { "source": "/join/:path*", "destination": "https://funeral-cover-system-q4unnueki-reginalthembaubisis-projects.vercel.app/join/:path*" },
+    { "source": "/admin", "destination": "https://funeral-cover-system-q4unnueki-reginalthembaubisis-projects.vercel.app/admin" },
+    { "source": "/admin/:path*", "destination": "https://funeral-cover-system-q4unnueki-reginalthembaubisis-projects.vercel.app/admin/:path*" },
+    { "source": "/book/:path*", "destination": "https://funeral-cover-system-q4unnueki-reginalthembaubisis-projects.vercel.app/book/:path*" },
+    { "source": "/assets/:path*", "destination": "https://funeral-cover-system-q4unnueki-reginalthembaubisis-projects.vercel.app/assets/:path*" }
+  ]
+}
