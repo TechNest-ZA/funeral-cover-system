@@ -2,6 +2,7 @@ package co.za.funeralcover.controller;
 
 import co.za.funeralcover.dto.AdminUserResponse;
 import co.za.funeralcover.dto.CreateStaffRequest;
+import co.za.funeralcover.dto.ResetPasswordRequest;
 import co.za.funeralcover.service.AdminUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,12 @@ public class StaffController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStaff(@PathVariable Long id) {
         adminUserService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/reset-password")
+    public ResponseEntity<Void> resetPassword(@PathVariable Long id, @Valid @RequestBody ResetPasswordRequest request) {
+        adminUserService.resetPassword(id, request);
         return ResponseEntity.noContent().build();
     }
 }

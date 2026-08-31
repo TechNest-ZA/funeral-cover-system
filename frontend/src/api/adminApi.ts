@@ -3,6 +3,7 @@ import type {
   AdminUserResponse,
   BookFilterValue,
   BookRow,
+  ChangePasswordRequest,
   ClaimResponse,
   CreateStaffRequest,
   DashboardStats,
@@ -130,4 +131,16 @@ export function createStaff(request: CreateStaffRequest): Promise<AdminUserRespo
 
 export function deleteStaff(id: number): Promise<void> {
   return apiRequest<void>(`/api/admin/staff/${id}`, { method: 'DELETE', auth: true });
+}
+
+export function changePassword(request: ChangePasswordRequest): Promise<void> {
+  return apiRequest<void>('/api/admin/me/password', { method: 'POST', auth: true, body: request });
+}
+
+export function resetStaffPassword(id: number, newPassword: string): Promise<void> {
+  return apiRequest<void>(`/api/admin/staff/${id}/reset-password`, {
+    method: 'POST',
+    auth: true,
+    body: { newPassword },
+  });
 }

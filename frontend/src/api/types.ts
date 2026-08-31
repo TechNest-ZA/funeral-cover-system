@@ -172,6 +172,11 @@ export interface CreateStaffRequest {
   role: AdminRole;
 }
 
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface ApiErrorBody {
   status: number;
   message: string;

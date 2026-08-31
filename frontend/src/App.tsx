@@ -14,6 +14,7 @@ import { MembersListPage } from './pages/admin/MembersListPage';
 import { MemberDetailPage } from './pages/admin/MemberDetailPage';
 import { AddMemberPage } from './pages/admin/AddMemberPage';
 import { StaffPage } from './pages/admin/StaffPage';
+import { AccountPage } from './pages/admin/AccountPage';
 
 export default function App() {
   return (
@@ -76,6 +77,16 @@ export default function App() {
                   <StaffPage />
                 </AdminLayout>
               </OwnerRoute>
+            }
+          />
+          <Route
+            path="/admin/account"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AccountPage />
+                </AdminLayout>
+              </ProtectedRoute>
             }
           />
 

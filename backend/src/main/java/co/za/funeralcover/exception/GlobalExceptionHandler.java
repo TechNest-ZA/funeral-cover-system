@@ -71,4 +71,15 @@ public class GlobalExceptionHandler {
                 .body(ApiError.of(HttpStatus.BAD_REQUEST.value(), "Validation failed",
                         Map.of("idNumber", ex.getMessage())));
     }
+
+    // 400, not 401: this is a field validation failure on an already-authenticated
+    // request, not a session/token problem. The API client clears the stored JWT
+    // on any 401, so a 401 here would silently log the admin out just for
+    // mistyping their current password.
+    @ExceptionHandler(IncorrectPasswordException.class)
+    public ResponseEntity<ApiError> handleIncorrectPassword(IncorrectPasswordException ex) {
+        return ResponseEntity.badRequest()
+                .body(ApiError.of(HttpStatus.BAD_REQUEST.value(), "Validation failed",
+                        Map.of("currentPassword", ex.getMessage())));
+    }
 }

@@ -4,6 +4,7 @@ import co.za.funeralcover.dto.*;
 import co.za.funeralcover.entity.BookFilter;
 import co.za.funeralcover.entity.MemberStatus;
 import co.za.funeralcover.service.AdminService;
+import co.za.funeralcover.service.AdminUserService;
 import co.za.funeralcover.service.FuneralEventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ public class AdminController {
     private static final int PAGE_SIZE = 20;
 
     private final AdminService adminService;
+    private final AdminUserService adminUserService;
     private final FuneralEventService funeralEventService;
 
     @PostMapping("/members")
@@ -84,6 +86,13 @@ public class AdminController {
     @GetMapping("/today")
     public TodayResponse getToday() {
         return adminService.getToday();
+    }
+
+    @PostMapping("/me/password")
+    public ResponseEntity<Void> changeOwnPassword(@Valid @RequestBody ChangePasswordRequest request,
+                                                    Authentication authentication) {
+        adminUserService.changeOwnPassword(authentication.getName(), request);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/funeral-events")

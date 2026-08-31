@@ -1,10 +1,10 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { Fragment, useEffect, useState, type FormEvent } from 'react';
 import { Card } from '../../components/Card';
 import { Button } from '../../components/Button';
 import { TextField } from '../../components/TextField';
 import { StatusBadge } from '../../components/StatusBadge';
 import { useAuth } from '../../context/AuthContext';
-import { createStaff, deleteStaff, listStaff } from '../../api/adminApi';
+import { createStaff, deleteStaff, listStaff, resetStaffPassword } from '../../api/adminApi';
 import type { AdminRole, AdminUserResponse } from '../../api/types';
 import { ApiError } from '../../api/client';
 import { formatDate } from '../../utils/format';
@@ -22,6 +22,11 @@ export function StaffPage() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  const [resetId, setResetId] = useState<number | null>(null);
+  const [resetPassword, setResetPasswordValue] = useState('');
+  const [resetError, setResetError] = useState<string | null>(null);
+  const [resetting, setResetting] = useState(false);
 
   function load() {
     listStaff()
@@ -52,6 +57,28 @@ export function StaffPage() {
       }
     } finally {
       setSubmitting(false);
+    }
+  }
+
+  function openReset(id: number) {
+    setResetId(id);
+    setResetPasswordValue('');
+    setResetError(null);
+  }
+
+  async function handleReset(e: FormEvent) {
+    e.preventDefault();
+    if (resetId === null) return;
+    setResetError(null);
+    setResetting(true);
+    try {
+      await resetStaffPassword(resetId, resetPassword);
+      setResetId(null);
+      setResetPasswordValue('');
+    } catch (err) {
+      setResetError(err instanceof ApiError ? err.message : 'Could not reset the password.');
+    } finally {
+      setResetting(false);
     }
   }
 
@@ -146,29 +173,67 @@ export function StaffPage() {
                 </tr>
               )}
               {staff?.map((s) => (
-                <tr key={s.id} style={{ borderTop: '1px solid var(--color-border)' }}>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 600 }}>
-                    {s.username}
-                    {currentUser?.username === s.username && (
-                      <span style={{ color: 'var(--color-text-faint)', fontWeight: 400 }}> (you)</span>
-                    )}
-                  </td>
-                  <td style={{ padding: '0.85rem 1rem' }}>
-                    <StatusBadge status={s.role} />
-                  </td>
-                  <td style={{ padding: '0.85rem 1rem', color: 'var(--color-text-muted)' }}>
-                    {formatDate(s.createdAt)}
-                  </td>
-                  <td style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>
-                    <button
-                      className="btn btn-danger btn-sm btn-inline"
-                      onClick={() => handleDelete(s)}
-                      disabled={deletingId === s.id}
-                    >
-                      {deletingId === s.id ? 'Removing…' : 'Remove'}
-                    </button>
-                  </td>
-                </tr>
+                <Fragment key={s.id}>
+                  <tr style={{ borderTop: '1px solid var(--color-border)' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 600 }}>
+                      {s.username}
+                      {currentUser?.username === s.username && (
+                        <span style={{ color: 'var(--color-text-faint)', fontWeight: 400 }}> (you)</span>
+                      )}
+                    </td>
+                    <td style={{ padding: '0.85rem 1rem' }}>
+                      <StatusBadge status={s.role} />
+                    </td>
+                    <td style={{ padding: '0.85rem 1rem', color: 'var(--color-text-muted)' }}>
+                      {formatDate(s.createdAt)}
+                    </td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                      <button
+                        className="btn btn-secondary btn-sm btn-inline"
+                        onClick={() => (resetId === s.id ? setResetId(null) : openReset(s.id))}
+                        style={{ marginRight: 8 }}
+                      >
+                        Reset password
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm btn-inline"
+                        onClick={() => handleDelete(s)}
+                        disabled={deletingId === s.id}
+                      >
+                        {deletingId === s.id ? 'Removing…' : 'Remove'}
+                      </button>
+                    </td>
+                  </tr>
+                  {resetId === s.id && (
+                    <tr style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-surface-alt)' }}>
+                      <td colSpan={4} style={{ padding: '1rem' }}>
+                        <form onSubmit={handleReset} style={{ display: 'flex', alignItems: 'flex-end', gap: 12, flexWrap: 'wrap' }}>
+                          <div style={{ minWidth: 240 }}>
+                            <TextField
+                              label={`New password for ${s.username}`}
+                              type="password"
+                              value={resetPassword}
+                              onChange={(e) => setResetPasswordValue(e.target.value)}
+                              error={resetError ?? undefined}
+                              hint="At least 8 characters"
+                              autoComplete="new-password"
+                              required
+                              style={{ marginBottom: 0 }}
+                            />
+                          </div>
+                          <div style={{ display: 'flex', gap: 8, paddingBottom: resetError ? 26 : 2 }}>
+                            <Button type="submit" loading={resetting} style={{ width: 'auto' }}>
+                              Set password
+                            </Button>
+                            <Button type="button" variant="ghost" onClick={() => setResetId(null)} disabled={resetting} style={{ width: 'auto' }}>
+                              Cancel
+                            </Button>
+                          </div>
+                        </form>
+                      </td>
+                    </tr>
+                  )}
+                </Fragment>
               ))}
             </tbody>
           </table>

@@ -1,11 +1,14 @@
 package co.za.funeralcover.service;
 
 import co.za.funeralcover.dto.AdminUserResponse;
+import co.za.funeralcover.dto.ChangePasswordRequest;
 import co.za.funeralcover.dto.CreateStaffRequest;
+import co.za.funeralcover.dto.ResetPasswordRequest;
 import co.za.funeralcover.entity.AdminRole;
 import co.za.funeralcover.entity.AdminUser;
 import co.za.funeralcover.exception.CannotRemoveLastOwnerException;
 import co.za.funeralcover.exception.DuplicateUsernameException;
+import co.za.funeralcover.exception.IncorrectPasswordException;
 import co.za.funeralcover.exception.ResourceNotFoundException;
 import co.za.funeralcover.repository.AdminUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -54,5 +57,27 @@ public class AdminUserService {
         }
 
         adminUserRepository.delete(user);
+    }
+
+    @Transactional
+    public void changeOwnPassword(String username, ChangePasswordRequest request) {
+        AdminUser user = adminUserRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin user not found"));
+
+        if (!passwordEncoder.matches(request.currentPassword(), user.getPasswordHash())) {
+            throw new IncorrectPasswordException("Current password is incorrect");
+        }
+
+        user.setPasswordHash(passwordEncoder.encode(request.newPassword()));
+        adminUserRepository.save(user);
+    }
+
+    @Transactional
+    public void resetPassword(Long id, ResetPasswordRequest request) {
+        AdminUser user = adminUserRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin user " + id + " not found"));
+
+        user.setPasswordHash(passwordEncoder.encode(request.newPassword()));
+        adminUserRepository.save(user);
     }
 }

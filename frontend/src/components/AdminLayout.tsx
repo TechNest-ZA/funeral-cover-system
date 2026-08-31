@@ -66,6 +66,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
             </AdminNavLink>
             <AdminNavLink to="/admin/members">The book</AdminNavLink>
             {user?.role === 'owner' && <AdminNavLink to="/admin/staff">Staff</AdminNavLink>}
+            <AdminNavLink to="/admin/account">Account</AdminNavLink>
           </nav>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
