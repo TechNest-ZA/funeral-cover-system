@@ -65,7 +65,7 @@ process.on('uncaughtException', (err) => {
 });
 
 server.listen(PROXY_PORT, () => {
-  console.log(`Guardian Cover (combined, dev-only) running on http://localhost:${PROXY_PORT}`);
+  console.log(`Sondela (combined, dev-only) running on http://localhost:${PROXY_PORT}`);
   console.log(`  -> marketing site proxied from :${MARKETING_PORT}`);
   console.log(`  -> app (/join, /admin, /book) proxied from :${APP_PORT}`);
 });
