@@ -1,0 +1,11 @@
+{
+  "name": "guardian-cover-dev-proxy",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Local-only reverse proxy that unifies the marketing site and the React app under one origin, so links between them work exactly like they will once both are deployed on the same real domain.",
+  "type": "commonjs",
+  "main": "server.js",
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}

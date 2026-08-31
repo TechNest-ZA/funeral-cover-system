@@ -1,0 +1,93 @@
+:root {
+  /* ===== Legacy tokens (Phase 1 build) =====
+     Still used by components not yet migrated to the warm redesign below.
+     Remove once every component references the new token set instead. */
+  --color-primary: #0b3d5c;
+  --color-primary-dark: #082c43;
+  --color-primary-light: #e8eef2;
+  --color-teal: #0e7c7b;
+  --color-teal-dark: #0a5f5e;
+  --color-teal-light: #e4f2f1;
+  --color-bg: #f6f4ef;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f0ede6;
+  --color-border: #e1dcd0;
+  --color-text: #1c2b36;
+  --color-text-muted: #5b6b75;
+  --color-text-faint: #8a97a0;
+  --color-success: #1e8e5a;
+  --color-success-bg: #e6f4ec;
+  --color-warning: #a8720a;
+  --color-warning-bg: #faf1de;
+  --color-danger: #c0392b;
+  --color-danger-bg: #fbeae8;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-card: 0 2px 10px rgba(11, 61, 92, 0.08), 0 1px 3px rgba(11, 61, 92, 0.06);
+  --shadow-elevated: 0 8px 24px rgba(11, 61, 92, 0.14), 0 2px 6px rgba(11, 61, 92, 0.08);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* ===== Warm redesign tokens (2026-08-27 handoff) =====
+     Parlor Site + System Redesign. See
+     Documents/Planning SaaS and website strategy/design_handoff_funeral_cover/README.md */
+
+  /* Backgrounds */
+  --paper: #f7f4ed;
+  --paper-raised: #fdfbf7;
+  --paper-sunken: #f2ece0;
+  --canvas: #e7e2d6;
+
+  /* Ink */
+  --ink: #1b241f;
+  --ink-2: #2c3a30;
+  --ink-3: #243029;
+  --body: #414a42;
+  --muted: #555d51;
+  --muted-2: #5d665e;
+  --muted-warm: #6b6353;
+
+  /* Lines */
+  --line: #ded6c4;
+  --line-soft: #eae3d5;
+  --line-strong: #c6bda6;
+  --line-faint: #a89f8b;
+
+  /* Accent */
+  --clay: #9c5b3c;
+  --clay-hover: #82492e;
+  --sand: #f0d9b8;
+
+  /* On dark */
+  --on-dark: #f7f4ed;
+  --on-dark-2: #e4e8de;
+  --on-dark-body: #b8c2b4;
+  --on-dark-muted: #9aa694;
+  --on-dark-line: #3b4a3f;
+  --on-dark-line-2: #55645a;
+  --on-dark-body-2: #cfd6ca;
+
+  /* Status (admin) */
+  --status-pending-bg: #dde6f0;
+  --status-pending-fg: #2c5578;
+  --status-active-bg: #dfeade;
+  --status-active-fg: #2c5c39;
+  --status-behind-bg: #f6e6cf;
+  --status-behind-fg: #8a5a12;
+  --status-lapsed-bg: #f3ddd7;
+  --status-lapsed-fg: #8f3a28;
+  --status-deceased-bg: #e6e2d7;
+  --status-deceased-fg: #4a4a44;
+  --status-valid-hint: #2c5c39;
+
+  /* Shape */
+  --radius-btn: 3px;
+  --radius-chip: 2px;
+
+  /* Type */
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-warm-body: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}

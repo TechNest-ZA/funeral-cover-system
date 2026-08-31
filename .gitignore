@@ -1,0 +1,9 @@
+# Local dev logs (backend/mysql/dev-proxy run output) - never useful in history
+*.log
+
+# dev-proxy is a small Node tool; keep its lockfile, not its node_modules
+dev-proxy/node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

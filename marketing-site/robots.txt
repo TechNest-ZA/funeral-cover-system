@@ -1,0 +1,6 @@
+# DEMO ONLY. This is a demonstration build, not a live business - see the
+# banner on every page. Disallowed entirely so it can never be indexed and
+# surfaced to a real grieving family searching for funeral cover.
+# Remove this Disallow (or scope it down) once a real parlor adopts this site.
+User-agent: *
+Disallow: /

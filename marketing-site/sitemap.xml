@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DEMO ONLY. robots.txt disallows the whole site while this is a
+  demonstration build, so nothing here is actually crawled yet - but it's
+  built and ready to switch on the moment a real parlor adopts this site.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.guardiancover.co.za/</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/funeral-cover-nelspruit.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/cover-for-your-family.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/switching-from-another-parlor.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/digital-membership-book.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/funeral-service-included.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/same-week-payout.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/compare-our-plans.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.guardiancover.co.za/tombstones-and-memorials.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+</urlset>
