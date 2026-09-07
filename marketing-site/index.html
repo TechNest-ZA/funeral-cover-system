@@ -67,14 +67,6 @@
 </div>
 <script src="demo-banner.js"></script>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <span>Someone has passed away? Call us now — we answer 24 hours.</span>
-    <!-- REPLACE: real phone number -->
-    <a href="#" title="Example number — demonstration site">013 000 0000</a>
-  </div>
-</div>
-
 <header class="site">
   <div class="header-inner">
     <a href="index.html" class="logo">
@@ -90,7 +82,12 @@
     </nav>
     <div class="header-actions">
       <!-- REPLACE: real phone number -->
-      <a class="header-phone" href="tel:+27130000000">013 000 0000</a>
+      <a class="header-pill" href="tel:+27130000000" title="Example number — demonstration site">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h3.2l1.3 3.6-1.9 1.6a11.5 11.5 0 006 6l1.6-1.9 3.6 1.3V18.5a1.5 1.5 0 01-1.6 1.5A15.5 15.5 0 013.5 6.1 1.5 1.5 0 015 4.5z"/></svg>
+        <span class="header-pill-lead">Bereavement</span>
+        <span class="header-pill-num">013 000 0000</span>
+      </a>
+      <a class="header-portal" href="/admin">Staff login</a>
       <a class="btn btn-clay" href="/join">Join our cover</a>
     </div>
   </div>
