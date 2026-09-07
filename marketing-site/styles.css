@@ -200,15 +200,31 @@ section { padding: clamp(48px, 6vw, 84px) 0 0; }
 .plan-tile .price span { font-size: 15px; }
 .plan-tile .who { font-size: 15px; line-height: 1.55; margin-bottom: 22px; }
 .plan-tile .lines { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
-.plan-tile .lines div { display: flex; gap: 10px; align-items: baseline; font-size: 15px; line-height: 1.5; }
-.plan-tile .lines span.mark { color: var(--clay); font-weight: 700; }
+.plan-tile .lines div { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; line-height: 1.5; }
+.plan-tile .lines span.check { color: var(--clay); flex-shrink: 0; margin-top: 3px; }
+.plan-tile .lines span.check svg { width: 16px; height: 16px; display: block; }
 .plan-tile a.btn { margin-top: auto; justify-content: center; }
 
-/* Joining steps (numbered list, "Three minutes" section) */
+/* Joining steps (numbered list, "Three minutes" section) — numbered circle nodes */
 .step-list { display: flex; flex-direction: column; }
-.step-row { display: flex; gap: 20px; padding: 22px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.step-row { display: flex; gap: 20px; padding: 22px 0; border-top: 1px solid var(--line); align-items: flex-start; }
 .step-row:last-child { border-bottom: 1px solid var(--line); }
-.step-num { font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1; color: var(--line-strong); flex-shrink: 0; width: 42px; }
+.step-num {
+  font-family: var(--font-display); font-weight: 400; font-size: 18px; line-height: 1;
+  color: var(--paper-raised); flex-shrink: 0; width: 40px; height: 40px; margin-top: 2px;
+  border-radius: 50%; background: var(--clay); display: flex; align-items: center; justify-content: center;
+}
+
+/* "What happens" stage badges (numbered-panel restyle) */
+.stack-stage { grid-template-columns: 150px 1fr 1fr; gap: clamp(20px, 3vw, 44px); }
+.stage-col { display: flex; align-items: center; gap: 12px; }
+.stage-badge {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--clay);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.stage-badge svg { width: 19px; height: 19px; color: var(--paper-raised); }
+.stage-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-2); font-weight: 600; }
+@media (max-width: 940px) { .stack-stage { grid-template-columns: 1fr !important; } .stage-col { margin-bottom: 4px; } }
 .step-title { font-family: var(--font-display); font-weight: 400; font-size: 21px; line-height: 1.25; margin: 0 0 6px; color: var(--ink); }
 .step-desc { font-size: 15.5px; line-height: 1.6; color: var(--body); margin: 0; }
 
