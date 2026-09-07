@@ -122,12 +122,6 @@ nav.primary a:hover { color: var(--ink); }
 .header-pill-num { font-size: 12.5px; font-weight: 700; color: var(--ink); }
 .header-pill-lead + .header-pill-num::before { content: '— '; }
 
-.header-portal {
-  font-size: 13.5px; font-weight: 700; color: var(--ink); white-space: nowrap;
-  padding: 9px 16px; border-radius: 3px; background: var(--paper-sunken); border: 1px solid var(--line);
-}
-.header-portal:hover { background: #ece6d8; color: var(--ink); }
-
 .nav-toggle-checkbox { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
 .nav-toggle-btn {
   display: none; align-items: center; justify-content: center;
@@ -148,9 +142,6 @@ header.site:has(.nav-toggle-checkbox:checked) .mobile-nav { display: flex; }
 @media (max-width: 1400px) {
   nav.primary { display: none; }
   .nav-toggle-btn { display: flex; }
-}
-@media (max-width: 760px) {
-  .header-portal { display: none; }
 }
 @media (max-width: 600px) {
   .header-pill-lead { display: none; }
