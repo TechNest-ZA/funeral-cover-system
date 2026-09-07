@@ -174,8 +174,9 @@ section { padding: clamp(48px, 6vw, 84px) 0 0; }
 .box-figure b { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4vw, 44px); line-height: 1; color: var(--ink); }
 .box-figure span { font-size: 15px; color: var(--muted); }
 .box-list { display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 1px solid var(--line); }
-.box-list div { display: flex; gap: 11px; align-items: baseline; font-size: 15.5px; line-height: 1.55; color: var(--body); }
-.box-list span.mark { color: var(--clay); font-weight: 700; }
+.box-list div { display: flex; gap: 11px; align-items: flex-start; font-size: 15.5px; line-height: 1.55; color: var(--body); }
+.box-list span.check { color: var(--clay); flex-shrink: 0; margin-top: 3px; }
+.box-list span.check svg { width: 16px; height: 16px; display: block; }
 
 .placeholder-block {
   border: 1px solid var(--line);
