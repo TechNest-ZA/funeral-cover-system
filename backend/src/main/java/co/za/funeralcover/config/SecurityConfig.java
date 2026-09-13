@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .accessDeniedHandler(jwtAccessDeniedHandler))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/api/plans/**", "/api/members/**", "/api/payments/**").permitAll()
+                        .requestMatchers("/api/plans/**", "/api/members/**", "/api/payments/**", "/api/chat").permitAll()
                         .requestMatchers("/api/admin/**").authenticated()
                         .anyRequest().authenticated()
                 )

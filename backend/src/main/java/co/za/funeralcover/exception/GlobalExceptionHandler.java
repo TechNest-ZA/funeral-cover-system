@@ -82,4 +82,16 @@ public class GlobalExceptionHandler {
                 .body(ApiError.of(HttpStatus.BAD_REQUEST.value(), "Validation failed",
                         Map.of("currentPassword", ex.getMessage())));
     }
+
+    @ExceptionHandler(ChatUnavailableException.class)
+    public ResponseEntity<ApiError> handleChatUnavailable(ChatUnavailableException ex) {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(ApiError.of(HttpStatus.SERVICE_UNAVAILABLE.value(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(ChatRateLimitExceededException.class)
+    public ResponseEntity<ApiError> handleChatRateLimitExceeded(ChatRateLimitExceededException ex) {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .body(ApiError.of(HttpStatus.TOO_MANY_REQUESTS.value(), ex.getMessage()));
+    }
 }

@@ -325,3 +325,58 @@ footer.site { margin-top: clamp(56px, 7vw, 92px); border-top: 1px solid var(--li
 
 .answer-lede { font-size: 19px; line-height: 1.6; color: var(--ink); margin: 0 0 20px; font-weight: 500; }
 .body-copy { font-size: 17px; line-height: 1.7; color: var(--body); margin: 0 0 16px; }
+
+/* Chat widget - built entirely from chatbot.js, styled here so the markup
+   doesn't have to be duplicated across every static page. */
+.sondela-chat-launcher {
+  position: fixed; right: 20px; bottom: 20px; z-index: 200;
+  width: 58px; height: 58px; border-radius: 50%; border: none;
+  background: var(--clay); color: var(--paper-raised); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(27, 36, 31, 0.25); transition: transform 0.15s ease, background 0.15s ease;
+}
+.sondela-chat-launcher:hover { background: var(--clay-hover); transform: scale(1.05); }
+.sondela-chat-launcher svg { width: 26px; height: 26px; }
+
+.sondela-chat-panel {
+  position: fixed; right: 20px; bottom: 90px; z-index: 200;
+  width: min(360px, calc(100vw - 40px)); height: min(520px, calc(100vh - 130px));
+  background: var(--paper-raised); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(27, 36, 31, 0.28);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+/* [hidden] is equal specificity to the class above and would otherwise lose
+   to it, since both are (0,1,0) and this rule needs to win regardless of
+   source order - without it the panel shows on load despite panel.hidden. */
+.sondela-chat-panel[hidden] { display: none; }
+.sondela-chat-header {
+  background: var(--ink); color: var(--on-dark); padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.sondela-chat-header-title { font-family: var(--font-display); font-size: 16px; }
+.sondela-chat-header-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--on-dark-muted); letter-spacing: 0.04em; }
+.sondela-chat-close { background: none; border: none; color: var(--on-dark); cursor: pointer; font-size: 20px; line-height: 1; padding: 4px; }
+
+.sondela-chat-messages { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.sondela-chat-bubble { font-size: 14px; line-height: 1.5; padding: 9px 13px; border-radius: 12px; max-width: 85%; }
+.sondela-chat-bubble.assistant { background: var(--paper-sunken); color: var(--body); align-self: flex-start; border-bottom-left-radius: 3px; }
+.sondela-chat-bubble.user { background: var(--clay); color: var(--paper-raised); align-self: flex-end; border-bottom-right-radius: 3px; }
+.sondela-chat-bubble.typing { color: var(--muted-warm); font-style: italic; }
+
+.sondela-chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); flex-shrink: 0; }
+.sondela-chat-input {
+  flex: 1; border: 1px solid var(--line-strong); border-radius: 20px; padding: 9px 14px;
+  font-family: var(--font-body); font-size: 14px; color: var(--ink); background: var(--paper);
+}
+.sondela-chat-input:focus { outline: 2px solid var(--clay); outline-offset: 1px; }
+.sondela-chat-send {
+  background: var(--clay); color: var(--paper-raised); border: none; border-radius: 20px;
+  padding: 0 18px; font-family: var(--font-body); font-weight: 700; font-size: 14px; cursor: pointer;
+}
+.sondela-chat-send:disabled { opacity: 0.5; cursor: default; }
+.sondela-chat-send:not(:disabled):hover { background: var(--clay-hover); }
+
+@media (max-width: 480px) {
+  .sondela-chat-panel { right: 12px; left: 12px; width: auto; bottom: 82px; }
+  .sondela-chat-launcher { right: 12px; bottom: 12px; }
+}
