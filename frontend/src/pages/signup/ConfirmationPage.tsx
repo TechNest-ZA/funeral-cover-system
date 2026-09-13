@@ -105,6 +105,12 @@ export function ConfirmationPage() {
               </div>
             </div>
 
+            {book.dependents.length === 0 && book.planName !== 'Single' && (
+              <p style={{ fontSize: 13.5, lineHeight: 1.6, color: 'var(--muted-warm)', textAlign: 'center', marginTop: -10, marginBottom: 20 }}>
+                Your {book.planName} plan already covers your immediate family — add their names below so the parlor has them on hand if they're ever needed.
+              </p>
+            )}
+
             <div style={{ marginBottom: 20, fontSize: 13, lineHeight: 1.6, color: 'var(--muted-warm)', textAlign: 'center' }}>
               On this phone? Scanning your own screen won't work — tap your link instead:
               <br />
@@ -140,7 +146,7 @@ export function ConfirmationPage() {
               {shareLabel}
             </Button>
             <Button variant="clay-outline" onClick={() => navigate(`/book/${accessToken}`)}>
-              Add my parents as well
+              {dependentsCtaLabel(book.planName)}
             </Button>
 
             <p style={{ fontSize: 13, color: 'var(--muted-warm)', marginTop: '1.25rem', textAlign: 'center' }}>
@@ -151,6 +157,17 @@ export function ConfirmationPage() {
       </div>
     </SignupLayout>
   );
+}
+
+function dependentsCtaLabel(planName: string) {
+  switch (planName) {
+    case 'Family':
+      return 'Add your spouse and children';
+    case 'Extended':
+      return 'Add your parents and in-laws';
+    default:
+      return 'Add a dependant';
+  }
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
