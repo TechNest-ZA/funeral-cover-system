@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -16,12 +17,28 @@ import { AddMemberPage } from './pages/admin/AddMemberPage';
 import { StaffPage } from './pages/admin/StaffPage';
 import { AccountPage } from './pages/admin/AccountPage';
 
+// This app has no homepage of its own (only /join, /admin, /book) - the
+// real homepage is the separately-deployed marketing site. Redirecting "/"
+// to "/join" internally made sense when the app was the only thing running
+// locally, but now that the marketing site is a real, separate production
+// domain, visiting this app's bare domain should leave for the actual
+// homepage rather than dropping visitors straight into the signup wizard
+// with no context.
+function RootRedirect() {
+  useEffect(() => {
+    window.location.replace(
+      import.meta.env.VITE_MARKETING_SITE_URL || 'https://funeral-cover-system-eny2.vercel.app'
+    );
+  }, []);
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Navigate to="/join" replace />} />
+          <Route path="/" element={<RootRedirect />} />
           <Route path="/join" element={<SignupPage />} />
           <Route path="/join/details" element={<DetailsPage />} />
           <Route path="/join/:memberId/pay" element={<PaymentPage />} />
