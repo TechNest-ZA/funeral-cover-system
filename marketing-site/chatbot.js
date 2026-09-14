@@ -4,11 +4,9 @@
 // no markup needed on the page beyond the <script> tag - so every page gets
 // it for free and there's nothing to keep in sync across the 9 HTML files.
 (function () {
-  // Same-origin assumption doesn't hold here (this is a static file served
-  // by its own dev server) - point this at wherever the backend actually
-  // runs. Update this before a real deploy, same as the phone number
-  // REPLACE placeholders elsewhere on this site.
-  var API_BASE = 'http://localhost:8080';
+  // Same-origin assumption doesn't hold here (marketing site and backend
+  // are two separate deployments - Vercel and Railway respectively).
+  var API_BASE = 'https://funeral-cover-system-production-400c.up.railway.app';
 
   var GREETING = "Hi, I'm the Sondela assistant. Ask me about plans, pricing, or how cover works " +
     "— I'm here even when the office is closed. If it's an emergency, call 013 000 0000 any time.";
